@@ -76,7 +76,7 @@ const CandyController = {
             console.log(error);
             res.status(400).json(error);
         }
-    }
+    },
 
 }
 
