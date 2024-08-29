@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginAndRegView from './views/LoginAndRegView';
 import HomePageView from './views/HomePageView';
