@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import cartIcon from '../assets/cart-icon.png';
-import './App.css';
 
 const Home = () => {
     const navigate = useNavigate();
