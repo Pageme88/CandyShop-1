@@ -1,6 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import cartIcon from '../assets/cart-icon.png';
+import peppermintHotChocolateone from '../assets/peppermintHotChocolateone.jpg';
+import saltedCaramelBrowniestwo from '../assets/saltedCaramelBrowniestwo.jpg';
+import espressoDelightCupcakestwo from '../assets/espressoDelightCupcakestwo.jpg';
+import eggnogCheesecakeone from '../assets/eggnogCheesecakeone.jpg';
+import matchaGreenTeaBarkBerryParfait from '../assets/matchaGreenTeaBarkBerryParfait.jpg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const allrecipes = [
     {
@@ -21,7 +27,8 @@ const allrecipes = [
             'Stir in the chocolate chips and sugar until melted and smooth.',
             'Add the vanilla extract and crushed peppermint candies. Stir until well combined.',
             'Pour into mugs and top with whipped cream if desired. Garnish with additional crushed peppermint candies.'
-        ]
+        ],
+        image: [ peppermintHotChocolateone ]
     },
     {
         id: 'saltedCaramelBrownies',
@@ -46,7 +53,8 @@ const allrecipes = [
             'Drop spoonfuls of caramel sauce onto the batter and swirl with a knife.',
             'Bake for 20-25 minutes, or until a toothpick comes out mostly clean.',
             'Cool completely, then sprinkle with sea salt before cutting into squares.'
-        ]
+        ],
+        image: [ saltedCaramelBrowniestwo ]
     },
     {
         id: 'espressoDelightCupcakes',
@@ -73,7 +81,8 @@ const allrecipes = [
             'Divide the batter evenly among the cupcake liners, filling about 2/3 full.',
             'Bake for 18-20 minutes, or until a toothpick inserted into the center comes out clean.',
             'Cool completely before frosting with your favorite coffee-flavored frosting or a simple buttercream.'
-        ]
+        ],
+        image: [ espressoDelightCupcakestwo ]
     },
     {
         id: 'matchaGreenTeaBarkBerryParfait',
@@ -93,7 +102,8 @@ const allrecipes = [
             'Add Matcha Green Tea Bark: Sprinkle broken pieces of Matcha Green Tea Bark over the berries.',
             'Add Granola (Optional): For extra crunch, sprinkle granola on top.',
             'Serve: Repeat the layers if desired and serve immediately or refrigerate until ready to enjoy.'
-        ]
+        ],
+        image: [ matchaGreenTeaBarkBerryParfait ]
     },
     {
         id: 'eggnogCheesecake',
@@ -122,7 +132,8 @@ const allrecipes = [
             'Make the Filling: In a large bowl, beat cream cheese until smooth. Add sugar and vanilla extract, mixing until combined. Beat in eggs one at a time, then add sour cream and heavy cream. Mix until smooth. Fold in the Eggnog Flavored Hard Candy Crumbles.',
             'Bake the Cheesecake: Pour the filling over the crust in the pan. Bake for 55-60 minutes, or until the center is set and the edges are lightly browned. Turn off the oven and let the cheesecake cool with the door slightly open for 1 hour. Refrigerate for at least 4 hours or overnight.',
             'Add Topping: Before serving, sprinkle the remaining Eggnog Flavored Hard Candy Crumbles on top. Optionally, add a dollop of whipped cream.'
-        ]
+        ],
+        image: [eggnogCheesecakeone ]
 
     }
 ];
@@ -131,34 +142,37 @@ const Recipes = () => {
     const navigate = useNavigate();
 
     const handleDetails = (id) => {
-        navigate(`/recipes/${id}`);
+        navigate(`/candyshop/recipes/${id}`);
     };
     
     const handleOrderClick = () => {
-        navigate('/placeorder');
+        navigate('/candyshop/placeorder');
     };
 
     return (
-        <div className="recipes-container">
-                        <header className="header">
-                <h1>Sweet Tooth Haven!</h1>
-                <nav>
-                    <button onClick={() => navigate('/candyshop')}>HOME</button>
-                    <button onClick={() => navigate('/candies')}>CANDIES</button>
-                    <button onClick={handleOrderClick}>ORDER</button>
-                    <img
-                        src={cartIcon}
-                        alt="Cart"
-                        className="cart-icon"
-                        onClick={() => navigate('/checkout')}
-                    />
-                </nav>
+        <div className="container-fluid">
+            <header className="bg-dark text-white py-3">
+                <div className="container d-flex justify-content-between align-items-center">
+                    <h1 className="mb-0"> Sweet Tooth Haven</h1>
+                    <nav>
+                        <button className="btn btn-light me-2" onClick={() => navigate('/candyshop/home')}>HOME</button>
+                        <button className="btn btn-light me-2" onClick={() => navigate('/candyshop/recipes')}>RECIPES</button>
+                        <button className="btn btn-light me-2" onClick={handleOrderClick}>ORDER</button>
+                        <img
+                            src={cartIcon}
+                            alt="Cart"
+                            className="cart-icon"
+                            onClick={() => navigate('/candyshop/checkout')}
+                        />
+                    </nav>
+                </div>
             </header>
             <h1>Use Sweet Tooth in your Home Recipes</h1>
             <ul className="recipes-list">
                 {allrecipes.map(recipe => (
                     <li key={recipe.id} className="recipe-item">
                         <h2>{recipe.name}</h2>
+                        <img src={recipe.image} alt={recipe.name} className="recipe-image" />
                         <p>{recipe.shortDescription}</p>
                         <button onClick={() => handleDetails(recipe.id)}>View Details</button>
                     </li>
